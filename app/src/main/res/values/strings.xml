@@ -1,0 +1,8 @@
+<resources>
+  <string name="app_name">Memo</string>
+  <string name="action_save">Save</string>
+  <string name="empty_text">なんかすごいメモを書いてみましょう！</string>
+  <string name="hint_title">すごいタイトルを書こう！</string>
+  <string name="hint_body">ここにメモを書こう！</string>
+  <string name="title_activity_unko">UNko</string>
+</resources>
