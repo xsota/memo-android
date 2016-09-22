@@ -8,7 +8,7 @@ import io.realm.annotations.PrimaryKey
  */
 open class Memo : RealmObject() {
 
-    @PrimaryKey var id: Int = 0
+    @PrimaryKey var id: String? = null
     var title: String? = null
     var body: String? = null
 }
