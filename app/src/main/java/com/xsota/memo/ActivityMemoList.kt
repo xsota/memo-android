@@ -5,6 +5,7 @@ import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.xsota.memo.databinding.ActivityMainBinding
+import com.xsota.memo.models.Memo
 
 class ActivityMemoList : AppCompatActivity() {
 
@@ -22,6 +23,10 @@ class ActivityMemoList : AppCompatActivity() {
             val i = Intent(this@ActivityMemoList, ActivityEditMemo::class.java)
             startActivity(i)
         }
+
+
+        val adapter = MemoAdapter(Memo.getMemoList(), layoutInflater)
+        mBinding.includedContent.listview.setAdapter(adapter)
     }
 
 }
