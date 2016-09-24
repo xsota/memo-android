@@ -27,6 +27,14 @@ class ActivityMemoList : AppCompatActivity() {
 
         val adapter = MemoAdapter(Memo.getMemoList(), layoutInflater)
         mBinding.includedContent.listview.setAdapter(adapter)
+
+        mBinding.includedContent.listview.setOnItemClickListener { adapterView, view, i, l ->
+            val memo = adapter.getItem(i) as Memo
+            val intent = Intent(this, ActivityEditMemo::class.java)
+            intent.putExtra("id", memo.id)
+
+            startActivity(intent)
+        }
     }
 
 }
