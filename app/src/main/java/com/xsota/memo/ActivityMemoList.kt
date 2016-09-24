@@ -13,6 +13,10 @@ class ActivityMemoList : AppCompatActivity() {
         DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
     }
 
+    private val adapter: MemoAdapter by lazy {
+        MemoAdapter(Memo.getMemoList(), layoutInflater)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -24,8 +28,6 @@ class ActivityMemoList : AppCompatActivity() {
             startActivity(i)
         }
 
-
-        val adapter = MemoAdapter(Memo.getMemoList(), layoutInflater)
         mBinding.includedContent.listview.setAdapter(adapter)
 
         mBinding.includedContent.listview.setOnItemClickListener { adapterView, view, i, l ->
@@ -35,6 +37,12 @@ class ActivityMemoList : AppCompatActivity() {
 
             startActivity(intent)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        adapter.notifyDataSetChanged()
+
     }
 
 }

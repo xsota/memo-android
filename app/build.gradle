@@ -35,7 +35,7 @@ dependencies {
     compile 'com.android.support:design:24.2.0'
     apply plugin: 'realm-android'
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-
+    //compile "org.jetbrains.kotlin:kotlin-reflect:${kotlin_version}"
     kapt 'com.android.databinding:compiler:2.2.0'
 }
 
