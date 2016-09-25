@@ -41,30 +41,39 @@ class ActivityEditMemo : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.action_save) {
-            Realm.getDefaultInstance().use { realm ->
-
-                realm.executeTransaction {
-                    val memo = Memo()//realm.createObject(Memo::class.java)
-
-                    if( id == null){
-                        memo.id = UUID.randomUUID().toString()
-                    } else {
-                        memo.id = id
-                    }
-
-                    mBinding.toolbar
-                    memo.title = mBinding.includedContent.titleEdittext.getText().toString()
-                    memo.body = mBinding.includedContent.bodyEdittext.getText().toString()
-
-                    realm.copyToRealmOrUpdate(memo)
-
-                    finish()
-                }
-            }
-
+        when (item.itemId) {
+            R.id.action_save -> save()
+            R.id.action_delete -> delete()
         }
 
+
         return super.onOptionsItemSelected(item)
+    }
+
+    fun save(){
+        Realm.getDefaultInstance().use { realm ->
+
+            realm.executeTransaction {
+                val memo = Memo()
+
+                if( id == null){
+                    memo.id = UUID.randomUUID().toString()
+                } else {
+                    memo.id = id
+                }
+
+                mBinding.toolbar
+                memo.title = mBinding.includedContent.titleEdittext.getText().toString()
+                memo.body = mBinding.includedContent.bodyEdittext.getText().toString()
+
+                realm.copyToRealmOrUpdate(memo)
+
+                finish()
+            }
+        }
+    }
+
+    fun delete(){
+
     }
 }
