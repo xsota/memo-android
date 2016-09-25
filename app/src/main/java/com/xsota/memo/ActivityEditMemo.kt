@@ -82,7 +82,7 @@ class ActivityEditMemo : AppCompatActivity() {
 
     fun showDleteDialog(){
         AlertDialog.Builder(this)
-        .setTitle("このメモを削除しますか？")
+        .setTitle(getString(R.string.dialog_delete))
         .setNegativeButton(getString(R.string.action_delete), DialogInterface.OnClickListener { dialogInterface, i ->
             delete()
         })
