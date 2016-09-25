@@ -11,8 +11,8 @@ import io.realm.Realm
 import java.util.*
 
 class ActivityEditMemo : AppCompatActivity() {
-    private val id : String? by lazy {
-        intent.getStringExtra("id")
+    private val id : String by lazy {
+        intent.getStringExtra("id") ?: UUID.randomUUID().toString()
     }
 
     private val mBinding: ActivityEditMemoBinding by lazy {
@@ -48,12 +48,6 @@ class ActivityEditMemo : AppCompatActivity() {
             realm.executeTransaction {
                 val memo = Memo()
 
-                if( id == null){
-                    memo.id = UUID.randomUUID().toString()
-                } else {
-                    memo.id = id
-                }
-
                 mBinding.toolbar
                 memo.title = mBinding.includedContent.titleEdittext.getText().toString()
                 memo.body = mBinding.includedContent.bodyEdittext.getText().toString()
@@ -66,15 +60,12 @@ class ActivityEditMemo : AppCompatActivity() {
     }
 
     fun load() {
-        id ?: return
-
         Realm.getDefaultInstance().use {  realm ->
             val result = realm.where(Memo::class.java).equalTo("id",id).findFirst()
-
+            result ?: return
             mBinding.includedContent.bodyEdittext.setText(result.body)
             mBinding.includedContent.titleEdittext.setText(result.title)
         }
-
     }
 
     fun delete(){
