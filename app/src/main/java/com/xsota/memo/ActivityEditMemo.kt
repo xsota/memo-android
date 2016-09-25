@@ -22,15 +22,7 @@ class ActivityEditMemo : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        if (id != null){
-            Realm.getDefaultInstance().use {  realm ->
-                val result = realm.where(Memo::class.java).equalTo("id",id).findFirst()
-
-                mBinding.includedContent.bodyEdittext.setText(result.body)
-                mBinding.includedContent.titleEdittext.setText(result.title)
-            }
-        }
-
+        load()
 
         setSupportActionBar(mBinding.toolbar)
     }
@@ -71,6 +63,18 @@ class ActivityEditMemo : AppCompatActivity() {
                 finish()
             }
         }
+    }
+
+    fun load() {
+        id ?: return
+
+        Realm.getDefaultInstance().use {  realm ->
+            val result = realm.where(Memo::class.java).equalTo("id",id).findFirst()
+
+            mBinding.includedContent.bodyEdittext.setText(result.body)
+            mBinding.includedContent.titleEdittext.setText(result.title)
+        }
+
     }
 
     fun delete(){
