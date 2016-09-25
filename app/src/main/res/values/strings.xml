@@ -1,9 +1,10 @@
 <resources>
   <string name="app_name">Memo</string>
   <string name="action_save">Save</string>
+  <string name="action_delete">削除</string>
+  <string name="action_cancel">キャンセル</string>
   <string name="empty_text">なんかすごいメモを書いてみましょう！</string>
   <string name="hint_title">すごいタイトルを書こう！</string>
   <string name="hint_body">ここにメモを書こう！</string>
-  <string name="title_activity_unko">UNko</string>
-  <string name="action_delete">削除</string>
+  <string name="dialog_delete">このメモを削除しますか？</string>
 </resources>
