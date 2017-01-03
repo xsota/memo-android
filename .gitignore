@@ -2,8 +2,10 @@ projectFilesBackup/
 *.iml
 .gradle
 /local.properties
-/.idea/workspace.xml
-/.idea/libraries
+.idea/workspace.xml
+.idea/libraries
+.idea/misc.xml
+.idea/modules.xml
 .DS_Store
-/build
+build/
 /captures
