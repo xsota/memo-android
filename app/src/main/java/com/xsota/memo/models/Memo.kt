@@ -13,6 +13,8 @@ open class Memo : RealmObject() {
     @PrimaryKey var id: String? = null
     var title: String? = null
     var body: String? = null
+    var latitude: Double? = null
+    var longitude: Double? = null
 
     companion object {
         fun getMemoList(): RealmResults<Memo> {
