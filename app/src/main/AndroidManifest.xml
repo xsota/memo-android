@@ -23,7 +23,7 @@
       </intent-filter>
     </activity>
     <activity
-      android:name=".ActivityEditMemo"
+      android:name=".activities.ActivityEditMemo"
       android:label="@string/app_name"
       android:theme="@style/AppTheme.NoActionBar">
     </activity>
