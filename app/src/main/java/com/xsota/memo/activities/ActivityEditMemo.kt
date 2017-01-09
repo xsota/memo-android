@@ -1,4 +1,4 @@
-package com.xsota.memo
+package com.xsota.memo.activities
 
 import android.content.DialogInterface
 import android.databinding.DataBindingUtil
@@ -7,6 +7,7 @@ import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import com.xsota.memo.R
 import com.xsota.memo.databinding.ActivityEditMemoBinding
 import com.xsota.memo.models.Memo
 import io.realm.Realm
@@ -62,7 +63,7 @@ class ActivityEditMemo : AppCompatActivity() {
     }
 
     fun load() {
-        Realm.getDefaultInstance().use {  realm ->
+        Realm.getDefaultInstance().use { realm ->
             val result = realm.where(Memo::class.java).equalTo("id",id).findFirst()
             result ?: return
             mBinding.includedContent.bodyEdittext.setText(result.body)
@@ -71,7 +72,7 @@ class ActivityEditMemo : AppCompatActivity() {
     }
 
     fun delete(){
-        Realm.getDefaultInstance().use {  realm ->
+        Realm.getDefaultInstance().use { realm ->
             val result = realm.where(Memo::class.java).equalTo("id",id).findAll()
             realm.beginTransaction()
             result.deleteAllFromRealm()
