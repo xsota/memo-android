@@ -1,10 +1,11 @@
-package com.xsota.memo
+package com.xsota.memo.viewmodels
 
 import android.databinding.DataBindingUtil
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import com.xsota.memo.R
 import com.xsota.memo.databinding.ViewMemoItemBinding
 import com.xsota.memo.models.Memo
 import io.realm.RealmResults
@@ -13,7 +14,7 @@ import io.realm.RealmResults
  * Created by sota on 2016/09/22.
  */
 
-class MemoAdapter(val memoList:RealmResults<Memo>, val inflater: LayoutInflater) : BaseAdapter() {
+class MemoAdapter(val memoList: RealmResults<Memo>, val inflater: LayoutInflater) : BaseAdapter() {
 
     override fun getCount(): Int {
         return memoList.size
@@ -28,7 +29,7 @@ class MemoAdapter(val memoList:RealmResults<Memo>, val inflater: LayoutInflater)
     }
 
     override fun getView(i: Int, view: View?, viewGroup: ViewGroup): View? {
-        val binding = DataBindingUtil.inflate<ViewMemoItemBinding>(inflater,R.layout.view_memo_item, viewGroup, false)
+        val binding = DataBindingUtil.inflate<ViewMemoItemBinding>(inflater, R.layout.view_memo_item, viewGroup, false)
         binding.memo = memoList.get(i)
 
         return binding.root

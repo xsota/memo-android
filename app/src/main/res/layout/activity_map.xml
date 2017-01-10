@@ -5,7 +5,7 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  tools:context="com.xsota.memo.activities.ActivityMap">
+  tools:context="com.xsota.memo.views.ActivityMap">
 
   <org.osmdroid.views.MapView
     android:id="@+id/map"

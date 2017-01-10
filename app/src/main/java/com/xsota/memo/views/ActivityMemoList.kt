@@ -1,10 +1,10 @@
-package com.xsota.memo.activities
+package com.xsota.memo.views
 
 import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import com.xsota.memo.MemoAdapter
+import com.xsota.memo.viewmodels.MemoAdapter
 import com.xsota.memo.R
 import com.xsota.memo.databinding.ActivityMainBinding
 import com.xsota.memo.models.Memo

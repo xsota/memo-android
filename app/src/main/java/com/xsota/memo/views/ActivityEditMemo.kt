@@ -1,4 +1,4 @@
-package com.xsota.memo.activities
+package com.xsota.memo.views
 
 import android.content.DialogInterface
 import android.databinding.DataBindingUtil
