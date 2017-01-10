@@ -5,14 +5,14 @@ import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.xsota.memo.R
-import com.xsota.memo.databinding.ActivityMainBinding
+import com.xsota.memo.databinding.ActivityMemoListBinding
 import com.xsota.memo.models.Memo
 import com.xsota.memo.viewmodels.adapter.MemoListAdapter
 
 class ActivityMemoList : AppCompatActivity() {
 
-    private val mBinding: ActivityMainBinding by lazy {
-        DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+    private val mBinding: ActivityMemoListBinding by lazy {
+        DataBindingUtil.setContentView<ActivityMemoListBinding>(this, R.layout.activity_memo_list)
     }
 
     private val mListAdapter: MemoListAdapter by lazy {

@@ -26,7 +26,7 @@
 
     <include
       android:id="@+id/included_content"
-      layout="@layout/content_main"
+      layout="@layout/content_memo_list"
       />
 
     <android.support.design.widget.FloatingActionButton
