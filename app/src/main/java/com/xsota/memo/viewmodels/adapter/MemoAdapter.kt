@@ -1,4 +1,4 @@
-package com.xsota.memo.viewmodels
+package com.xsota.memo.viewmodels.adapter
 
 import android.databinding.DataBindingUtil
 import android.view.LayoutInflater
