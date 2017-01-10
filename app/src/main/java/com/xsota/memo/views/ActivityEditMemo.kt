@@ -10,7 +10,7 @@ import android.view.MenuItem
 import com.xsota.memo.R
 import com.xsota.memo.databinding.ActivityEditMemoBinding
 import com.xsota.memo.models.Memo
-import io.realm.Realm
+import com.xsota.memo.viewmodels.EditMemoViewModel
 import java.util.*
 
 class ActivityEditMemo : AppCompatActivity() {
@@ -22,10 +22,15 @@ class ActivityEditMemo : AppCompatActivity() {
         DataBindingUtil.setContentView<ActivityEditMemoBinding>(this, R.layout.activity_edit_memo)
     }
 
+    private val memo by lazy {
+        Memo.load(id)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        load()
+        mBinding.viewModel = EditMemoViewModel(this)
+        mBinding.memo = memo
 
         setSupportActionBar(mBinding.toolbar)
     }
@@ -37,55 +42,29 @@ class ActivityEditMemo : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.action_save -> save()
-            R.id.action_delete -> showDleteDialog()
+            R.id.action_save -> clickSaveMenu()
+            R.id.action_delete -> clickDeleteMenu()
         }
-
 
         return super.onOptionsItemSelected(item)
     }
 
-    fun save(){
-        Realm.getDefaultInstance().use { realm ->
+    fun clickSaveMenu(){
+        memo.id = id
+        memo.title = mBinding.includedContent.titleEdittext.getText().toString()
+        memo.body = mBinding.includedContent.bodyEdittext.getText().toString()
 
-            realm.executeTransaction {
-                val memo = Memo()
-
-                memo.id = id
-                memo.title = mBinding.includedContent.titleEdittext.getText().toString()
-                memo.body = mBinding.includedContent.bodyEdittext.getText().toString()
-
-                realm.copyToRealmOrUpdate(memo)
-
-                finish()
-            }
-        }
+        memo.save()
+        finish()
     }
 
-    fun load() {
-        Realm.getDefaultInstance().use { realm ->
-            val result = realm.where(Memo::class.java).equalTo("id",id).findFirst()
-            result ?: return
-            mBinding.includedContent.bodyEdittext.setText(result.body)
-            mBinding.includedContent.titleEdittext.setText(result.title)
-        }
-    }
-
-    fun delete(){
-        Realm.getDefaultInstance().use { realm ->
-            val result = realm.where(Memo::class.java).equalTo("id",id).findAll()
-            realm.beginTransaction()
-            result.deleteAllFromRealm()
-            realm.commitTransaction()
-            finish()
-        }
-    }
-
-    fun showDleteDialog(){
+    fun clickDeleteMenu(){
         AlertDialog.Builder(this)
         .setTitle(getString(R.string.dialog_delete))
         .setNegativeButton(getString(R.string.action_delete), DialogInterface.OnClickListener { dialogInterface, i ->
-            delete()
+            Memo.delete(id)
+
+            finish()
         })
         .setPositiveButton(getString(R.string.action_cancel), null)
         .show()

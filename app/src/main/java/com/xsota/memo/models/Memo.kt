@@ -8,13 +8,25 @@ import io.realm.annotations.PrimaryKey
 /**
  * Created by sota on 16/09/20.
  */
-open class Memo : RealmObject() {
+open class Memo() : RealmObject() {
 
     @PrimaryKey var id: String? = null
     var title: String? = null
     var body: String? = null
     var latitude: Double? = null
     var longitude: Double? = null
+
+    constructor(id: String) : this() {
+        this.id = id
+    }
+
+    fun save(){
+        Realm.getDefaultInstance().use { realm ->
+            realm.executeTransaction {
+                realm.copyToRealmOrUpdate(this)
+            }
+        }
+    }
 
     companion object {
         fun getMemoList(): RealmResults<Memo> {
@@ -23,5 +35,23 @@ open class Memo : RealmObject() {
 
             return result
         }
+
+        fun load(id:String) :Memo {
+            Realm.getDefaultInstance().use { realm ->
+                val result = realm.where(Memo::class.java).equalTo("id",id).findFirst()
+                return result ?: Memo(id)
+            }
+        }
+
+        fun delete(id:String){
+            Realm.getDefaultInstance().use { realm ->
+                val result = realm.where(Memo::class.java).equalTo("id",id).findAll()
+
+                realm.executeTransaction {
+                    result.deleteAllFromRealm()
+                }
+            }
+        }
+
     }
 }
