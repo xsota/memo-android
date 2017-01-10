@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import com.xsota.memo.R
 import com.xsota.memo.databinding.ActivityMemoListBinding
 import com.xsota.memo.models.Memo
+import com.xsota.memo.viewmodels.MemoListViewModel
 import com.xsota.memo.viewmodels.adapter.MemoListAdapter
 
 class ActivityMemoList : AppCompatActivity() {
@@ -23,13 +24,9 @@ class ActivityMemoList : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setSupportActionBar(mBinding.toolbar)
+
+        mBinding.viewModel = MemoListViewModel()
         mBinding.includedContent.listview.emptyView = mBinding.includedContent.emptyView
-
-        mBinding.fab.setOnClickListener {
-            val i = Intent(this@ActivityMemoList, ActivityEditMemo::class.java)
-            startActivity(i)
-        }
-
         mBinding.includedContent.listview.setAdapter(mListAdapter)
 
         mBinding.includedContent.listview.setOnItemClickListener { adapterView, view, i, l ->

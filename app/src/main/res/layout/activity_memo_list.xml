@@ -4,6 +4,11 @@
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
   >
+
+  <data>
+    <variable name="viewModel" type="com.xsota.memo.viewmodels.MemoListViewModel"/>
+  </data>
+
   <android.support.design.widget.CoordinatorLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -27,6 +32,7 @@
     <include
       android:id="@+id/included_content"
       layout="@layout/content_memo_list"
+      android:viewModel="@{viewModel}"
       />
 
     <android.support.design.widget.FloatingActionButton
@@ -36,6 +42,7 @@
       android:layout_gravity="bottom|end"
       android:layout_margin="@dimen/fab_margin"
       android:src="@drawable/ic_mode_edit_white_24dp"
+      android:onClick="@{viewModel.onClickCreateMemoButton}"
       />
 
   </android.support.design.widget.CoordinatorLayout>

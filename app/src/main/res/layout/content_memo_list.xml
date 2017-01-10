@@ -5,6 +5,10 @@
   xmlns:tools="http://schemas.android.com/tools"
   >
 
+  <data>
+    <variable name="viewModel" type="com.xsota.memo.viewmodels.MemoListViewModel"/>
+  </data>
+
   <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
