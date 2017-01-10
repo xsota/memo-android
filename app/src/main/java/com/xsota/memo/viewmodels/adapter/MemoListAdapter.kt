@@ -14,7 +14,7 @@ import io.realm.RealmResults
  * Created by sota on 2016/09/22.
  */
 
-class MemoAdapter(val memoList: RealmResults<Memo>, val inflater: LayoutInflater) : BaseAdapter() {
+class MemoListAdapter(val memoList: RealmResults<Memo>, val inflater: LayoutInflater) : BaseAdapter() {
 
     override fun getCount(): Int {
         return memoList.size

@@ -4,10 +4,10 @@ import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import com.xsota.memo.viewmodels.adapter.MemoAdapter
 import com.xsota.memo.R
 import com.xsota.memo.databinding.ActivityMainBinding
 import com.xsota.memo.models.Memo
+import com.xsota.memo.viewmodels.adapter.MemoListAdapter
 
 class ActivityMemoList : AppCompatActivity() {
 
@@ -15,8 +15,8 @@ class ActivityMemoList : AppCompatActivity() {
         DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
     }
 
-    private val adapter: MemoAdapter by lazy {
-        MemoAdapter(Memo.getMemoList(), layoutInflater)
+    private val mListAdapter: MemoListAdapter by lazy {
+        MemoListAdapter(Memo.getMemoList(), layoutInflater)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,10 +30,10 @@ class ActivityMemoList : AppCompatActivity() {
             startActivity(i)
         }
 
-        mBinding.includedContent.listview.setAdapter(adapter)
+        mBinding.includedContent.listview.setAdapter(mListAdapter)
 
         mBinding.includedContent.listview.setOnItemClickListener { adapterView, view, i, l ->
-            val memo = adapter.getItem(i) as Memo
+            val memo = mListAdapter.getItem(i) as Memo
             val intent = Intent(this, ActivityEditMemo::class.java)
             intent.putExtra("id", memo.id)
 
@@ -43,7 +43,7 @@ class ActivityMemoList : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        adapter.notifyDataSetChanged()
+        mListAdapter.notifyDataSetChanged()
 
     }
 
