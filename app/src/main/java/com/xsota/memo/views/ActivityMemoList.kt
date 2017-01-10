@@ -27,7 +27,7 @@ class ActivityMemoList : AppCompatActivity() {
 
         mBinding.viewModel = MemoListViewModel()
         mBinding.includedContent.listview.emptyView = mBinding.includedContent.emptyView
-        mBinding.includedContent.listview.setAdapter(mListAdapter)
+        mBinding.includedContent.listview.adapter = mListAdapter
 
         mBinding.includedContent.listview.setOnItemClickListener { adapterView, view, i, l ->
             val memo = mListAdapter.getItem(i) as Memo
