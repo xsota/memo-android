@@ -25,7 +25,7 @@ class MemoListAdapter(val memoList: RealmResults<Memo>, val inflater: LayoutInfl
     }
 
     override fun getItemId(i: Int): Long {
-        return 0
+        return i.toLong()
     }
 
     override fun getView(i: Int, view: View?, viewGroup: ViewGroup): View? {
