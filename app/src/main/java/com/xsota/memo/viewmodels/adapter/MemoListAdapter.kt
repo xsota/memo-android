@@ -28,10 +28,19 @@ class MemoListAdapter(val memoList: RealmResults<Memo>, val inflater: LayoutInfl
         return 0
     }
 
-    override fun getView(i: Int, view: View?, viewGroup: ViewGroup): View? {
-        val binding = DataBindingUtil.inflate<ViewMemoItemBinding>(inflater, R.layout.view_memo_item, viewGroup, false)
-        binding.memo = memoList[i]
+    override fun getView(i: Int, convertView: View?, viewGroup: ViewGroup): View? {
+        val binding: ViewMemoItemBinding?
+        val view = convertView
 
-        return binding.root
+        if (view == null){
+            binding = DataBindingUtil.inflate<ViewMemoItemBinding>(inflater, R.layout.view_memo_item, viewGroup, false)
+            binding.root.tag = binding
+        } else {
+            binding = view.tag as ViewMemoItemBinding
+        }
+
+        binding?.memo = memoList[i]
+
+        return binding?.root
     }
 }
