@@ -22,7 +22,7 @@ class ActivityEditMemo : AppCompatActivity() {
         DataBindingUtil.setContentView<ActivityEditMemoBinding>(this, R.layout.activity_edit_memo)
     }
 
-    private val memo by lazy {
+    private val mMemo by lazy {
         Memo.load(id)
     }
 
@@ -30,7 +30,7 @@ class ActivityEditMemo : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         mBinding.viewModel = EditMemoViewModel(this)
-        mBinding.memo = memo
+        mBinding.memo = mMemo
 
         setSupportActionBar(mBinding.toolbar)
     }
@@ -50,11 +50,11 @@ class ActivityEditMemo : AppCompatActivity() {
     }
 
     fun clickSaveMenu(){
-        memo.id = id
-        memo.title = mBinding.includedContent.titleEdittext.getText().toString()
-        memo.body = mBinding.includedContent.bodyEdittext.getText().toString()
+        mMemo.id = id
+        mMemo.title = mBinding.includedContent.titleEdittext.getText().toString()
+        mMemo.body = mBinding.includedContent.bodyEdittext.getText().toString()
 
-        memo.save()
+        mMemo.save()
         finish()
     }
 
