@@ -21,7 +21,7 @@ class MemoListAdapter(val memoList: RealmResults<Memo>, val inflater: LayoutInfl
     }
 
     override fun getItem(i: Int): Any? {
-        return memoList.get(i)
+        return memoList[i]
     }
 
     override fun getItemId(i: Int): Long {
@@ -30,7 +30,7 @@ class MemoListAdapter(val memoList: RealmResults<Memo>, val inflater: LayoutInfl
 
     override fun getView(i: Int, view: View?, viewGroup: ViewGroup): View? {
         val binding = DataBindingUtil.inflate<ViewMemoItemBinding>(inflater, R.layout.view_memo_item, viewGroup, false)
-        binding.memo = memoList.get(i)
+        binding.memo = memoList[i]
 
         return binding.root
     }
