@@ -8,7 +8,7 @@ import com.xsota.memo.R
 import com.xsota.memo.databinding.ActivityMemoListBinding
 import com.xsota.memo.models.Memo
 import com.xsota.memo.viewmodels.MemoListViewModel
-import com.xsota.memo.viewmodels.adapter.MemoListAdapter
+import com.xsota.memo.views.adapter.MemoListAdapter
 
 class ActivityMemoList : AppCompatActivity() {
 
