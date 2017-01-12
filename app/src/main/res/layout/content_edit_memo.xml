@@ -27,7 +27,7 @@
       android:layout_height="wrap_content"
       android:hint="@string/hint_title"
       android:inputType="text"
-      android:text="@{memo.title}"
+      android:text="@={memo.title}"
       />
 
     <EditText
@@ -37,7 +37,7 @@
       android:layout_height="wrap_content"
       android:hint="@string/hint_body"
       android:inputType="textMultiLine"
-      android:text="@{memo.body}"
+      android:text="@={memo.body}"
       />
   </RelativeLayout>
 </layout>

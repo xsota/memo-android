@@ -1,6 +1,5 @@
 package com.xsota.memo.views
 
-import android.content.DialogInterface
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
@@ -11,6 +10,7 @@ import com.xsota.memo.R
 import com.xsota.memo.databinding.ActivityEditMemoBinding
 import com.xsota.memo.models.Memo
 import com.xsota.memo.viewmodels.EditMemoViewModel
+import io.realm.Realm
 import java.util.*
 
 class ActivityEditMemo : AppCompatActivity() {
@@ -29,6 +29,8 @@ class ActivityEditMemo : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        Realm.getDefaultInstance().beginTransaction()
+        
         mBinding.viewModel = EditMemoViewModel(this)
         mBinding.memo = mMemo
 
@@ -50,18 +52,14 @@ class ActivityEditMemo : AppCompatActivity() {
     }
 
     fun clickSaveMenu(){
-        mMemo.id = id
-        mMemo.title = mBinding.includedContent.titleEdittext.getText().toString()
-        mMemo.body = mBinding.includedContent.bodyEdittext.getText().toString()
-
-        mMemo.save()
+        Realm.getDefaultInstance().commitTransaction()
         finish()
     }
 
     fun clickDeleteMenu(){
         AlertDialog.Builder(this)
         .setTitle(getString(R.string.dialog_delete))
-        .setNegativeButton(getString(R.string.action_delete), DialogInterface.OnClickListener { dialogInterface, i ->
+        .setNegativeButton(getString(R.string.action_delete), { dialogInterface, i ->
             Memo.delete(id)
 
             finish()
