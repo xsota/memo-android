@@ -14,7 +14,9 @@ class App : Application() {
 
 
         // Initialize Realm
-        val realmConfig = RealmConfiguration.Builder(this)
+        Realm.init(this)
+
+        val realmConfig = RealmConfiguration.Builder()
                 .deleteRealmIfMigrationNeeded()
                 .build()
 
