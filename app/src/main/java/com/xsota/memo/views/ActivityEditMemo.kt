@@ -51,6 +51,14 @@ class ActivityEditMemo : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
+    override fun onDestroy() {
+        if(Realm.getDefaultInstance().isInTransaction){
+            Realm.getDefaultInstance().cancelTransaction()
+        }
+
+        super.onDestroy()
+    }
+
     fun clickSaveMenu(){
         Realm.getDefaultInstance().commitTransaction()
         finish()
