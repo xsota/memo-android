@@ -23,7 +23,7 @@ class ActivityEditMemo : AppCompatActivity() {
     }
 
     private val mMemo by lazy {
-        Memo.load(id)
+        Memo.loadOrCreateIfNeeded(id)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

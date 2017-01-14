@@ -36,10 +36,10 @@ open class Memo() : RealmObject() {
             return result
         }
 
-        fun load(id:String) :Memo {
+        fun loadOrCreateIfNeeded(id:String) :Memo {
             Realm.getDefaultInstance().use { realm ->
                 val result = realm.where(Memo::class.java).equalTo("id",id).findFirst()
-                return result ?: Memo(id)
+                return result ?: realm.createObject(Memo::class.java, id)
             }
         }
 
