@@ -42,7 +42,7 @@
       android:layout_gravity="bottom|end"
       android:layout_margin="@dimen/fab_margin"
       android:src="@drawable/ic_mode_edit_white_24dp"
-      android:onClick="@{viewModel.onClickCreateMemoButton}"
+      android:onClick="@{viewModel::onClickCreateMemoButton}"
       />
 
   </android.support.design.widget.CoordinatorLayout>
