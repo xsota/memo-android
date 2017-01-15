@@ -22,9 +22,6 @@ class ActivityEditMemo : AppCompatActivity() {
         DataBindingUtil.setContentView<ActivityEditMemoBinding>(this, R.layout.activity_edit_memo)
     }
 
-    private val mMemo by lazy {
-        Memo.loadOrCreateIfNeeded(id)
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +29,7 @@ class ActivityEditMemo : AppCompatActivity() {
         Realm.getDefaultInstance().beginTransaction()
         
         mBinding.viewModel = EditMemoViewModel(this)
-        mBinding.memo = mMemo
+        mBinding.memo =  Memo.loadOrCreateIfNeeded(id)
 
         setSupportActionBar(mBinding.toolbar)
     }
