@@ -47,6 +47,12 @@ open class Memo() : RealmObject() {
             Realm.getDefaultInstance().use { realm ->
                 val result = realm.where(Memo::class.java).equalTo("id",id).findAll()
 
+                if (realm.isInTransaction){
+                    result.deleteAllFromRealm()
+                    realm.commitTransaction()
+                    return
+                }
+
                 realm.executeTransaction {
                     result.deleteAllFromRealm()
                 }
