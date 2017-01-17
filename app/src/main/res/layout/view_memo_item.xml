@@ -8,6 +8,9 @@
     <variable
       name="memo"
       type="com.xsota.memo.models.Memo"/>
+    <variable
+      name="viewModel"
+      type="com.xsota.memo.viewmodels.MemoListAdapterViewModel"/>
   </data>
 
   <RelativeLayout
@@ -24,6 +27,7 @@
       card_view:cardCornerRadius="4dp"
       android:layout_centerInParent="true"
       android:foreground="?android:attr/selectableItemBackground"
+      android:onClick="@{(v) -> viewModel.onClickItem(v,memo)}"
       >
       <RelativeLayout
         android:layout_width="match_parent"

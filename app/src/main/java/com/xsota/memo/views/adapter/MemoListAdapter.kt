@@ -8,6 +8,7 @@ import android.widget.BaseAdapter
 import com.xsota.memo.R
 import com.xsota.memo.databinding.ViewMemoItemBinding
 import com.xsota.memo.models.Memo
+import com.xsota.memo.viewmodels.MemoListAdapterViewModel
 import io.realm.RealmResults
 
 /**
@@ -38,6 +39,7 @@ class MemoListAdapter(val memoList: RealmResults<Memo>, val inflater: LayoutInfl
 
         binding.root.tag = binding //FIXME
         binding.memo = memoList[i]
+        binding.viewModel = MemoListAdapterViewModel()
 
         return binding.root
     }
