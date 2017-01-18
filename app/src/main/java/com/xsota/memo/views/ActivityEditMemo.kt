@@ -2,7 +2,6 @@ package com.xsota.memo.views
 
 import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
@@ -22,13 +21,12 @@ class ActivityEditMemo : AppCompatActivity() {
         DataBindingUtil.setContentView<ActivityEditMemoBinding>(this, R.layout.activity_edit_memo)
     }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         Realm.getDefaultInstance().beginTransaction()
         
-        mBinding.viewModel = EditMemoViewModel(this)
+        mBinding.viewModel = EditMemoViewModel(this, id)
         mBinding.memo =  Memo.loadOrCreateIfNeeded(id)
 
         setSupportActionBar(mBinding.toolbar)
@@ -40,12 +38,7 @@ class ActivityEditMemo : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.action_save -> clickSaveMenu()
-            R.id.action_delete -> clickDeleteMenu()
-        }
-
-        return super.onOptionsItemSelected(item)
+        return mBinding.viewModel.onOptionItemSelected(item)
     }
 
     override fun onDestroy() {
@@ -56,20 +49,4 @@ class ActivityEditMemo : AppCompatActivity() {
         super.onDestroy()
     }
 
-    fun clickSaveMenu(){
-        Realm.getDefaultInstance().commitTransaction()
-        finish()
-    }
-
-    fun clickDeleteMenu(){
-        AlertDialog.Builder(this)
-        .setTitle(getString(R.string.dialog_delete))
-        .setNegativeButton(getString(R.string.action_delete), { dialogInterface, i ->
-            Memo.delete(id)
-
-            finish()
-        })
-        .setPositiveButton(getString(R.string.action_cancel), null)
-        .show()
-    }
 }

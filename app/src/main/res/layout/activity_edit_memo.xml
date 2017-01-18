@@ -34,8 +34,8 @@
       android:id="@+id/included_content"
       layout="@layout/content_edit_memo"
       app:memo="@{memo}"
+      app:viewModel="@{viewModel}"
       />
-
 
   </android.support.design.widget.CoordinatorLayout>
 </layout>
