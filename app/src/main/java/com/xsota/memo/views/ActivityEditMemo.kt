@@ -26,7 +26,7 @@ class ActivityEditMemo : AppCompatActivity() {
         Realm.getDefaultInstance().beginTransaction()
 
         mBinding.viewModel = EditMemoViewModel(this, id)
-        mBinding.memo =  Memo.loadOrCreateIfNeeded(id)
+        mBinding.memo = Memo.loadOrCreateIfNeeded(id)
 
         setSupportActionBar(mBinding.toolbar)
     }
